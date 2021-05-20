@@ -20,7 +20,7 @@ class Webpush():
             payload = {
                 'head': 'STALEVAR',
                 'body': text,
-                'icon': 'https://stalevar.herokuapp.com/static/get?path=images/favicon.png',
+                'icon': 'http://localhost/static/get?path=images/favicon.png',
                 'url': url
             }
             #print(subscription)
@@ -37,8 +37,8 @@ class Webpush():
 
         vapid_data = {}
 
-        vapid_private_key = "xWgNVjUrA6ZJ9KIC8KZsmbxH5rHkqJFhK02VkQgm8jk"
-        vapid_admin_email = "stalevar@mail.ru"
+        vapid_private_key = "lm3ccZEH8DU6sRG8Hf7Gt_0uXNeG3XaPYwtdwK8ptoE"
+        vapid_admin_email = "stalevar@gmail.ru"
 
         # Vapid keys are optional, and mandatory only for Chrome.
         # If Vapid key is provided, include vapid key and claims

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ПОСЕТИТЕЛИ {% endblock %}
+
+{% block content %}
+<div class="w3-section" style="padding: 0 16px 0 16px"><i>посетители:</i></div>
+{% for visitor in visitors %}
+<div class="message-container w3-padding w3-white">
+    <div>IP: <small>{{ visitor.ip }}</small></div>
+    <div>PATH: <small>{{ visitor.path }}</small></div>
+    <div>USER AGENT: <small>{{ visitor.user_agent }}</small></div>
+    <div>ВРЕМЯ: <small>{{ visitor.date.strftime('%H:%M (%d.%m.%Y)') }}</small></div>
+</div>
+{% endfor %}
+{% endblock %}

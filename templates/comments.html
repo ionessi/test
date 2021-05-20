@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | КОММЕНТАРИИ {% endblock %}
+
+{% block content %}
+<div class="w3-margin"><i>комментарии:</i></div>
+{% for comment in comments %}
+<div class="message-container w3-padding w3-white" onclick="if (event.target.tagName !== 'A') {document.location.href = '/message?id={{ comment.message_id }}#{{ comment.id }}'}">
+    <div class="message">{{ comment.text }}</div>
+        {% if comment.file_name %}
+            {% if comment.mime_type in image %}
+                <div class="w3-row"><div class="indent w3-left w3-col m2 l3 w3-text-white">`</div><div class="w3-col m8 l6"><img src="/file/comment?id={{ comment.id }}" width="100%" style="margin: 5px 0 5px 0"/></div></div>
+            {% elif comment.mime_type in audio %}
+                <audio src="/file/comment?id={{ comment.id }}" controls style="margin: 5px 0 5px 0; width:100%"></audio>
+            {% endif %}
+            <div class="w3-margin-bottom">
+                {{ comment.mime_type }}
+                <br>
+                <a href="/file/comment?id={{ comment.id }}" download="{{ comment.file_name }}">{{ comment.file_name }}</a>
+            </div>
+        {% endif %}
+    <div style="display:flex;justify-content:space-between">
+        <strong class="w3-text-brown">{{ comment.sender }}</strong>
+        <strong class="w3-text-brown"><small>{{ comment.date.strftime('%H:%M (%d.%m.%Y)') }}</small></strong>
+    </div>
+</div>
+{% endfor %}
+<div class="w3-padding w3-center">
+{% if page > 1 %}
+    {% if page == 2 %}
+        <a class="w3-margin-right" href="/comments">1</a> <a href="/comments"><<<</a>
+    {% elif page > 2 %}
+        <a class="w3-margin-right" href="/comments">1</a> <a href="/comments?page={{ page - 1 }}"><<<</a>
+    {% else %}
+        <a href="/comments"><<<</a>
+    {% endif %}
+{% else %}
+    <<< 
+{% endif %}
+ {{ page }} 
+{% if page < pages %}
+    <a href="/comments?page={{ page + 1 }}">>>></a> <a class="w3-margin-left" href="/comments?page={{ pages }}">{{ pages }}</a>
+{% else %}
+    >>>
+{% endif %}
+</div>
+{% endblock %}

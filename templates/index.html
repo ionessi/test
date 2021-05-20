@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ГЛАВНАЯ {% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    {% include 'message_layout.html' %}
+{% endfor %}
+
+<div class="w3-padding w3-center">
+{% if page > 1 %}
+    {% if page == 2 %}
+        <a class="w3-margin-right" href="/">1</a> <a href="/"><<<</a>
+    {% elif page > 2 %}
+        <a class="w3-margin-right" href="/">1</a> <a href="/?page={{ page - 1 }}"><<<</a>
+    {% else %}
+        <a href="/"><<<</a>
+    {% endif %}
+{% else %}
+    <<<
+{% endif %}
+ {{ page }} 
+
+{% if page < pages %}
+    <a href="/?page={{ page + 1 }}">>>></a> <a class="w3-margin-left" href="/?page={{ pages }}">{{ pages }}</a>
+{% else %}
+    >>>
+{% endif %}
+</div>
+{% endblock %}

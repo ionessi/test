@@ -1,0 +1,12 @@
+{% extends 'base_reg.html' %}
+
+{% block title %} STALEVAR | РЕГИСТРАЦИЯ {% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    <input class="w3-input w3-center" type="text" name="login" maxlength="" placeholder="логин" pattern="^[a-z]+$" required />
+    <input class="w3-input w3-center" type="text" name="password" maxlength="" placeholder="пароль" pattern="^[a-z]+$" required />
+    <button class="w3-margin-top w3-button w3-tiny w3-2021-rust">ВОЙТИ</button>
+</form>
+<p><a href="/sign_in">вход</a></p>
+{% endblock %}

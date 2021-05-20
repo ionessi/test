@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ПОЛУЧАТЕЛИ УВЕДОМЛЕНИЙ {% endblock %}
+
+{% block content %}
+<div class="w3-margin"><i>получатели уведомлений:</i></div>
+{% for subscription in subscriptions %}
+    <div class="w3-padding w3-white" style="margin-bottom: 24px; word-wrap: break-word">
+        <strong>browser: </strong>{{ subscription.browser }}<br>
+        <strong>login: </strong>{{ subscription.login }}<br>
+        <strong>user_agent: </strong>{{ subscription.user_agent }}<br>
+    </div>
+{% endfor %}
+{% endblock %}

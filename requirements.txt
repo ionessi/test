@@ -1,0 +1,8 @@
+gunicorn
+jinja2
+psycopg2-binary
+#cryptography
+http-ece
+requests
+six
+py-vapid

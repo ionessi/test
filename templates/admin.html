@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ADMIN {% endblock %}
+
+{% block content %}
+<form class="" action="/admin/delete-users" method="POST">
+{% for user in users %}
+    <div class="w3-padding w3-white" style="margin-bottom: 24px; word-wrap: break-word">
+        <input name="users" class="w3-" type="checkbox" value={{ user.id }} /><br>
+        <strong>user: </strong>{{ user.login }}<br>
+        <strong>date: </strong>{{ user.date.strftime('%H:%M (%d.%m.%Y)') }}<br>
+        
+    </div>
+{% endfor %}
+    <button class="w3-button w3-tiny w3-amber">УДАЛИТЬ</button>
+</form>
+{% endblock %}

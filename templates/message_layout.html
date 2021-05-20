@@ -1,0 +1,15 @@
+<div class="message-container w3-padding w3-white" onclick="if (event.target.tagName !== 'A') {document.location.href = '/message?id={{ message.id }}'}">
+    <div class="message">{{ message.text }}</div>
+    {% if message.file_name %}
+        {% if message.mime_type in image %}
+            <div class="w3-row"><div class="indent w3-left w3-col m2 l3 w3-text-white">`</div><div class="w3-col m8 l6"><img src="/file/message?id={{ message.id }}" width="100%" style="margin: 5px 0 5px 0"/></div></div>
+        {% elif message.mime_type in audio %}
+            <audio src="/file/message?id={{ message.id }}" controls style="margin: 5px 0 5px 0; width:100%"></audio>
+        {% endif %}
+        <div class="w3-margin-bottom">{{ message.mime_type }}<br><a href="/file/message?id={{message.id }}" download="{{ message.file_name }}">{{ message.file_name }}</a></div>
+    {% endif %}
+    <div style="display:flex;justify-content:space-between">
+        <strong class="w3-text-brown">{{ message.sender }}</strong>
+        <strong class="w3-text-brown"><small>{{ message.date.strftime('%H:%M (%d.%m.%Y)') }}</small></strong>
+    </div>
+</div>

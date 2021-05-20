@@ -1,0 +1,31 @@
+ 
+version: "3"
+
+services:
+  db:
+    image: postgres:13.2
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/posgresql/13/stalevar
+    volumes:
+      - pgdata:/var/lib/posgresql/13/stalevar
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  web:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/stalevar
+    command: gunicorn --bind 0.0.0.0:8000 --reload --access-logfile - --access-logformat '%(r)s %(s)s' wsgi:application #python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+volumes:
+  pgdata:

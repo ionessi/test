@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ДОБАВИТЬ КОММЕНТАРИЙ {% endblock %}
+
+{% block content %}
+<div class="message-container w3-padding w3-white">
+    <div class="message">{{ message.text }}</div>
+    {% if message.file_name %}
+        {% if message.mime_type in image %}
+            <div class="w3-row"><div class="indent w3-left w3-col m2 l3 w3-text-white">`</div><div class="w3-col m8 l6"><img src="/file/message?id={{ message.id }}" width="100%" style="margin: 5px 0 5px 0"/></div></div>
+        {% elif message.mime_type in audio %}
+            <audio src="/file/message?id={{ message.id }}" controls style="margin: 5px 0 5px 0; width:100%"></audio>
+        {% endif %}
+        <div class="w3-margin-bottom">{{ message.mime_type }}<br><a href="/file/message?id={{message.id }}" download="{{ message.file_name }}">{{ message.file_name }}</a></div>
+    {% endif %}
+    <div style="display:flex;justify-content:space-between">
+        <strong class="w3-text-brown">{{ message.sender }}</strong>
+        <strong class="w3-text-brown"><small>{{ message.date.strftime('%H:%M (%d.%m.%Y)') }}</small></strong>
+    </div>
+</div>
+<div class="w3-margin"><i>добавить комментарий:</i></div>
+<form class="w3-margin-bottom" action="/comments/send" method="post" enctype="multipart/form-data">
+    <textarea name="text" class="w3-input" style="resize: vertical" rows="7" placeholder="текст сообщения"></textarea>
+    <input id="file" type="file" name="file" accept="" />
+    <input id="message_id" name="message_id" type="hidden" value="{{ message.id }}" />
+    <button class="w3-margin-top w3-button w3-tiny w3-2021-rust">ОТПРАВИТЬ</button>
+    <button class="w3-margin-top w3-right w3-button w3-tiny w3-2021-rust" onclick="addFile(event, 'file')">ФАЙЛ</button>
+</form>
+<div class="w3-margin"><i>комментарии:</i></div>
+{% for comment in comments %}
+<div id="{{ comment.id }}" class="message-container w3-white" style="padding: 16px 16px 16px 16px">
+    <div class="message">{{ comment.text }}</div>
+    {% if comment.file_name %}
+        {% if comment.mime_type in image %}
+            <div class="w3-row"><div class="indent w3-left w3-col m2 l3 w3-text-white">`</div><div class="w3-col m8 l6"><img src="/file/comment?id={{ comment.id }}" width="100%" style="margin: 5px 0 5px 0"/></div></div>
+        {% elif comment.mime_type in audio %}
+            <audio src="/file/comment?id={{ comment.id }}" controls style="margin: 5px 0 5px 0; width:100%"></audio>
+        {% endif %}
+        <div class="w3-margin-bottom">{{ comment.mime_type }}<br><a href="/file/comment?id={{ comment.id }}" download="{{ comment.file_name }}">{{ comment.file_name }}</a></div>
+    {% endif %}
+    <div style="display:flex;justify-content:space-between">
+        <strong class="w3-text-brown">{{ comment.sender }}</strong>
+        <strong class="w3-text-brown"><small>{{ comment.date.strftime('%H:%M (%d.%m.%Y)') }}</small></strong>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

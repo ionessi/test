@@ -1,0 +1,6 @@
+__pycache__/*
+/controllers/__pycache__/*
+/pywebpush/__pycache__/*
+/pywebpush/tests/*
+/venv/*
+start.py

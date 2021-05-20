@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} STALEVAR | ДОБАВИТЬ СООБЩЕНИЕ {% endblock %}
+
+{% block content %}
+<form class="" action="send" enctype="multipart/form-data"  method="POST">
+    <textarea name="text" class="w3-input" style="resize: vertical" rows="7" placeholder="текст сообщения"></textarea>
+    <input id="file" type="file" name="file" accept="" />
+    <button class="w3-margin-top w3-button w3-tiny w3-2021-rust">ОТПРАВИТЬ</button>
+    <button class="w3-margin-top w3-right w3-button w3-tiny w3-2021-rust" onclick="addFile(event, 'file')">ФАЙЛ</button>
+</form>
+{% endblock %}

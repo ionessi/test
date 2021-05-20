@@ -93,7 +93,7 @@ class Message(Init, Render, ConnectDb, Default, Webpush):
         conn.close()
         
         from threading import Thread
-        Thread(target=self.send_push, args=(sender, message_date.strftime('%H:%M (%d.%m.%Y)') + '\n сообщение от ' + sender, 'http://localhost',)).start()
+        Thread(target=self.send_push, args=(sender, message_date.strftime('%H:%M (%d.%m.%Y)') + '\n сообщение от ' + sender, 'http://localhost:8000',)).start()
         
         self.status = '303 See Other'
         self.response_headers = [

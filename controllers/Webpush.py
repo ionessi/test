@@ -20,7 +20,7 @@ class Webpush():
             payload = {
                 'head': 'STALEVAR',
                 'body': text,
-                'icon': 'http://localhost/static/get?path=images/favicon.png',
+                'icon': 'http://localhost:8000/static/get?path=images/favicon.png',
                 'url': url
             }
             #print(subscription)
@@ -51,9 +51,9 @@ class Webpush():
         #print(vapid_data)
 
         try:
-            if self.environ['wsgi.url_scheme'] == 'https' and self.environ['HTTP_HOST'] != 'localhost:8000':
-                req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, **vapid_data)
-                return req
+            #if self.environ['wsgi.url_scheme'] == 'https' and self.environ['HTTP_HOST'] != 'localhost:8000':
+            req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, **vapid_data)
+            return req
             
         except WebPushException as e:
             # If the subscription is expired, delete it.

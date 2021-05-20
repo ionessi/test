@@ -92,7 +92,7 @@ class Comments(Init, Render, ConnectDb, Default, Webpush):
         conn.close()
         
         from threading import Thread
-        Thread(target=self.send_push, args=(login_cookie, message_date.strftime('%H:%M (%d.%m.%Y)') + '\n комментарий от ' + login_cookie, 'http://localhost/comments')).start()
+        Thread(target=self.send_push, args=(login_cookie, message_date.strftime('%H:%M (%d.%m.%Y)') + '\n комментарий от ' + login_cookie, 'http://localhost:8000/comments')).start()
 
         self.response_headers = [
             ('Location', '/message?id=' + message_id),

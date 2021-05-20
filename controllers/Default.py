@@ -94,14 +94,3 @@ class Default():
         
         return title
         
-'''
-d = Default()
-#addr = 'https://humor.rin.ru/cgi-bin/show.pl?razdel=10&anekdot=110382'
-#addr = 'https://ngs24.ru/text/world/2021/04/27/69888416/'
-#addr = 'https://habr.com/ru/post/349860/'
-addr = 'https://www.w3schools.com/js/js_arrays.asp'
-addr = 'https://m.gazeta.ru/business/news/2020/10/29/n_15147913.shtml'
-addr = 'https://m.gazeta.ru/politics/2020/10/27_a_13335805.shtml'
-addr = 'https://3dnews.ru/assets/external/illustrations/2021/03/04/1034098/2.jpg'
-res = d.get_title(addr)
-'''
